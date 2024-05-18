@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:screening_sleep_apnea/main.dart';
 import 'package:screening_sleep_apnea/widgets/buttons/custom_button.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_number.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
@@ -31,6 +33,29 @@ class QuestionScreenState extends State<QuestionScreen> {
       formData[name] = value;
       print(formData);
     });
+  }
+
+  Future<void> submitFormData() async {
+    
+    print("ke sumbit");
+    const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+    print(supabaseUrl.isEmpty);
+    print(supabaseUrl);
+
+    //save data to supabase 
+    try {
+      var response = await supabase
+          .from('sleep')
+          .insert({"data": formData});
+      
+      print(response);
+
+    } catch (e) {
+      print(e.toString());
+    }
+
+    //get result from AI
+
   }
 
 
@@ -120,7 +145,7 @@ class QuestionScreenState extends State<QuestionScreen> {
                       isEnable: isNextButtonEnable,
                     )
                   : CustomButton(
-                    onPressed: () {}, 
+                    onPressed: () async { submitFormData(); }, 
                     child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -194,7 +219,3 @@ List<Question> questionList = [
         ]
       })
 ];
-
-void main(List<String> args) {
-  runApp(const MaterialApp(home: QuestionScreen(),) );
-}
