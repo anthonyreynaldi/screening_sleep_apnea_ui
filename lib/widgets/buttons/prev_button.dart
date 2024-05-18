@@ -1,33 +1,30 @@
 
 import 'package:flutter/material.dart';
+import 'package:screening_sleep_apnea/widgets/buttons/custom_button.dart';
 
 import '../../utils/app_colors.dart';
 
-class PrevButton extends StatelessWidget {
+class PrevButton extends StatefulWidget {
   final VoidCallback onTap;
-  const PrevButton({required this.onTap, super.key});
+  bool isEnable;
+
+  PrevButton({required this.onTap, this.isEnable = true, super.key});
+
+  @override
+  State<PrevButton> createState() => _PrevButtonState();
+}
+
+class _PrevButtonState extends State<PrevButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.kPrimary,
-        foregroundColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        textStyle: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+    return CustomButton(
+      onPressed: widget.onTap,
+      isEnabled: widget.isEnable,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.navigate_before),
-          // Text("prev"),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:screening_sleep_apnea/widgets/buttons/custom_button.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_number.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,6 +24,7 @@ class QuestionScreenState extends State<QuestionScreen> {
   int _currentPageIndex = 0;
   final _pageController = PageController();
   var formData = {};
+  bool isNextButtonEnable = false;
 
   updateFormData(String name, dynamic value){
     setState(() {
@@ -34,7 +36,8 @@ class QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int _currentValue = 3;
+
+    isNextButtonEnable = formData[questionList[_currentPageIndex].name] == null ? false : true;
 
     return Scaffold(
       backgroundColor: AppColors.kBackground,
@@ -107,17 +110,27 @@ class QuestionScreenState extends State<QuestionScreen> {
                   : SizedBox(),
 
               (_currentPageIndex < questionList.length - 1)
-                  ? NextButton(onTap: () {
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                    })
-                  : PrimaryButton(
-                      onTap: () {},
-                      width: 166,
-                      text: 'Get Started',
-                    ),
+                  ? NextButton(
+                      onTap: () {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      isEnable: isNextButtonEnable,
+                    )
+                  : CustomButton(
+                    onPressed: () {}, 
+                    child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.check),
+                          SizedBox(width: 8.0,),
+                          Text("SUBMIT"),
+                        ],
+                      ),
+                    )
+                  
             ],
           ),
 

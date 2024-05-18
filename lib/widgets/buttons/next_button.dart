@@ -1,49 +1,31 @@
 
 import 'package:flutter/material.dart';
+import 'package:screening_sleep_apnea/widgets/buttons/custom_button.dart';
 
 import '../../utils/app_colors.dart';
 
-class NextButton extends StatelessWidget {
+class NextButton extends StatefulWidget {
   final VoidCallback onTap;
-  const NextButton({required this.onTap, super.key});
+  bool isEnable;
+
+  NextButton({required this.onTap, this.isEnable = true, super.key});
+
+  @override
+  State<NextButton> createState() => _NextButtonState();
+}
+
+class _NextButtonState extends State<NextButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.kPrimary,
-        foregroundColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        textStyle: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+    return CustomButton(
+      onPressed: widget.onTap,
+      isEnabled: widget.isEnable,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Text("next"),
           Icon(Icons.navigate_next),
         ],
-      ),
-    );
-
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(color: AppColors.kPrimary, borderRadius: BorderRadius.circular(48)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Next"),
-            const Icon(Icons.navigate_next, size: 30, color: Colors.white),
-          ],
-        )
       ),
     );
   }
