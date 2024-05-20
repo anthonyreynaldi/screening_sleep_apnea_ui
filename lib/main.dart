@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:screening_sleep_apnea/models/question.dart';
 import 'package:screening_sleep_apnea/screens/home_screen.dart';
+import 'package:screening_sleep_apnea/screens/result_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return HomeScreen();
+    return MaterialApp(
+      home: ResultScreen(formData: Question.getDummyFormData(),),
+    );
   }
 }

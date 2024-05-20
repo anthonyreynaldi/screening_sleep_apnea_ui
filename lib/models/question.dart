@@ -10,7 +10,7 @@ class Question {
   Map input;
   int order;
 
-Question(
+  Question(
       {required this.image, required this.name, required this.title, required this.question, required this.input, required this.order});
 
   factory Question.fromJson(Map<String, dynamic> json) {
@@ -131,4 +131,26 @@ Question(
           order: 4)
     ];
   }
+
+  static Map<String, dynamic> getDummyFormData(){
+    return {
+      "jenis_kelamin": "Laki - laki",
+      "usia": 22,
+      "tinggi_badan": 165,
+      "berat_badan": 55,
+      "lingkar_perut": 103,
+      "lingkar_leher": 52,
+      "suara_mengorok": "Normal (tidak mengorok",
+      "terbangun_buang_air_kecil": 0,
+      "terbangun_tersedak": 1,
+      "durasi_tidur": 6,
+      "mengantuk_saat_beraktifitas": "Sedikit Mengganggu",
+      "kondisi_menyertai": [
+        "Batuk",
+        "Pilek",
+        "GERD"
+      ]
+    };
+  }
+
 }

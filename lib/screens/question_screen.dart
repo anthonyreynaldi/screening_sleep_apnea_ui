@@ -30,7 +30,7 @@ class QuestionScreen extends StatefulWidget {
 class QuestionScreenState extends State<QuestionScreen> {
   int _currentPageIndex = 0;
   final _pageController = PageController();
-  var formData = {};
+  Map<String, dynamic> formData = {};
   bool isNextButtonEnable = false;
 
   updateFormData(String name, dynamic value){
