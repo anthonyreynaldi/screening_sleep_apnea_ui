@@ -3,7 +3,7 @@ import 'package:screening_sleep_apnea/widgets/questions/question_checkbox.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_number.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_select.dart';
 
-import '../../onboarding_animation.dart';
+import '../../animations/onboarding_animation.dart';
 import '../../models/question.dart';
 
 

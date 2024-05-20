@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:screening_sleep_apnea/utils/app_colors.dart';
 import 'package:screening_sleep_apnea/widgets/buttons/custom_button.dart';
 
-import '../../circular_reveal_route.dart';
+import '../../animations/circular_reveal_route.dart';
 
 class CircleRevealButton extends StatelessWidget {
   final VoidCallback onPressed;
