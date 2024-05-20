@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:screening_sleep_apnea/utils/app_colors.dart';
 
-import '../../utils/question.dart';
+import '../../models/question.dart';
 
 class QuestionNumber extends StatefulWidget {
   final Question question;

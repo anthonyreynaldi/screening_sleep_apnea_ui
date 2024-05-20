@@ -6,12 +6,16 @@ class CustomButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Widget child;
   final bool isEnabled;
+  final Color? buttonColor;
+  final Color? textColor;
 
   const CustomButton({
     Key? key,
     required this.onPressed,
     required this.child,
     this.isEnabled = true,
+    this.buttonColor,
+    this.textColor,
   }) : super(key: key);
 
   @override
@@ -42,9 +46,9 @@ class _CustomButtonState extends State<CustomButton> {
     return ElevatedButton(
       onPressed: _isEnabled ? widget.onPressed : null,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.kPrimary,
+        backgroundColor: widget.buttonColor ?? AppColors.kPrimary,
         disabledBackgroundColor: AppColors.kPrimaryColor[100],
-        foregroundColor: Colors.white,
+        foregroundColor: widget.textColor ?? Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),

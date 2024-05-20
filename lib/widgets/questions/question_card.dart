@@ -4,7 +4,7 @@ import 'package:screening_sleep_apnea/widgets/questions/question_number.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_select.dart';
 
 import '../../onboarding_animation.dart';
-import '../../utils/question.dart';
+import '../../models/question.dart';
 
 
 class QuestionCard extends StatefulWidget {

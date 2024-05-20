@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../../utils/question.dart';
+import '../../models/question.dart';
 import '../custom_radio.dart';
 
 class QuestionSelect extends StatefulWidget {
