@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:screening_sleep_apnea/main.dart';
+import 'package:screening_sleep_apnea/screens/loading_screen.dart';
 import 'package:screening_sleep_apnea/widgets/buttons/custom_button.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_number.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -16,7 +17,9 @@ import '../widgets/buttons/primary_button.dart';
 import '../widgets/buttons/skip_button.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({Key? key}) : super(key: key);
+  List<Question> questionList;
+
+  QuestionScreen({Key? key, required this.questionList}) : super(key: key);
 
   @override
   QuestionScreenState createState() => QuestionScreenState();
@@ -38,9 +41,6 @@ class QuestionScreenState extends State<QuestionScreen> {
   Future<void> submitFormData() async {
     
     print("ke sumbit");
-    const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
-    print(supabaseUrl.isEmpty);
-    print(supabaseUrl);
 
     //save data to supabase 
     try {
@@ -58,25 +58,13 @@ class QuestionScreenState extends State<QuestionScreen> {
 
   }
 
-
   @override
   Widget build(BuildContext context) {
 
+    List<Question> questionList = widget.questionList;
     isNextButtonEnable = formData[questionList[_currentPageIndex].name] == null ? false : true;
 
-    return Scaffold(
-      backgroundColor: AppColors.kBackground,
-      appBar: AppBar(
-        title: Text(
-          "Sceening Obstructive Sleep Apnea",
-          style: const TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black),
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: AppColors.kBackground,
-      ),
-
-      body: Column(
+    return Column(
         children: [
           Expanded(
               child: PageView.builder(
@@ -106,14 +94,14 @@ class QuestionScreenState extends State<QuestionScreen> {
                   dotWidth: 8,
                   dotColor: AppColors.kPrimary.withOpacity(0.2)),
               onDotClicked: (index) {
-                setState(() {
-                  _currentPageIndex = index;
-                });
-                _pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                );
+                // setState(() {
+                //   _currentPageIndex = index;
+                // });
+                // _pageController.animateToPage(
+                //   index,
+                //   duration: const Duration(milliseconds: 500),
+                //   curve: Curves.easeInOut,
+                // );
               }),
 
           const SizedBox(height: 30),
@@ -158,64 +146,62 @@ class QuestionScreenState extends State<QuestionScreen> {
                   
             ],
           ),
-
           const SizedBox(height: 20),
         ],
-      ),
-    );
+      );
   }
 }
 
 
-List<Question> questionList = [
-  Question(
-      image: AppAssets.kOnboardingFirst,
-      name: "berat_badan",
-      title: 'Berat Badan',
-      question: 'Berapa berat badan Anda?',
-      input: {
-        'type': 'number',
-        'unit': 'Kg',
-        'min': 0,
-        'max': 100,
-        'init': 50
-      }),
-  Question(
-      image: AppAssets.kOnboardingFirst,
-      name: "tinggi_badan",
-      title: 'Tinggi Badan',
-      question: 'Berapa tinggi badan Anda?',
-      input: {
-        'type': 'number',
-        'unit': 'cm',
-        'min': 0,
-        'max': 200,
-        'init': 150
-      }),
-  Question(
-      image: AppAssets.kOnboardingSecond,
-      name: "jenis_kelamin",
-      title: 'Jenis Kelamin',
-      question: 'Apa jenis kelamin Anda?',
-      input: {
-        'type': 'select',
-        'options': [
-          'Laki - laki',
-          'Perempuan'
-        ]
-      }),
-  Question(
-      image: AppAssets.kOnboardingThird,
-      name: "kondisi_menyertai",
-      title: 'Kondisi yang menyertai',
-      question: 'Centang kondisi yang sedang terjadi pada Anda',
-      input: {
-        'type': 'checkbox',
-        'options': [
-          'Diabetes',
-          'Hipertensi',
-          'Hyperkolesterol',
-          'Hidung tersumbat',
-        ]
-      })
-];
+// List<Question> questionList = [
+//   Question(
+//       image: AppAssets.kOnboardingFirst,
+//       name: "berat_badan",
+//       title: 'Berat Badan',
+//       question: 'Berapa berat badan Anda?',
+//       input: {
+//         'type': 'number',
+//         'unit': 'Kg',
+//         'min': 0,
+//         'max': 100,
+//         'init': 50
+//       }),
+//   Question(
+//       image: AppAssets.kOnboardingFirst,
+//       name: "tinggi_badan",
+//       title: 'Tinggi Badan',
+//       question: 'Berapa tinggi badan Anda?',
+//       input: {
+//         'type': 'number',
+//         'unit': 'cm',
+//         'min': 0,
+//         'max': 200,
+//         'init': 150
+//       }),
+//   Question(
+//       image: AppAssets.kOnboardingSecond,
+//       name: "jenis_kelamin",
+//       title: 'Jenis Kelamin',
+//       question: 'Apa jenis kelamin Anda?',
+//       input: {
+//         'type': 'select',
+//         'options': [
+//           'Laki - laki',
+//           'Perempuan'
+//         ]
+//       }),
+//   Question(
+//       image: AppAssets.kOnboardingThird,
+//       name: "kondisi_menyertai",
+//       title: 'Kondisi yang menyertai',
+//       question: 'Centang kondisi yang sedang terjadi pada Anda',
+//       input: {
+//         'type': 'checkbox',
+//         'options': [
+//           'Diabetes',
+//           'Hipertensi',
+//           'Hyperkolesterol',
+//           'Hidung tersumbat',
+//         ]
+//       })
+// ];
