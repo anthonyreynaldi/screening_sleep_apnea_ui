@@ -1,4 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:http/http.dart';
 import 'package:screening_sleep_apnea/main.dart';
+import "package:http/http.dart" as http;
+
+String base_url = "https://anthonyreynaldi.pythonanywhere.com";
 
 class Result {
   String image;
@@ -34,14 +41,16 @@ class Result {
   static Future<Map> getAIResult(Map formData) async {
     await Future.delayed(const Duration(seconds: 1));
 
-    return {
-      "name": "berat",
-      "label_detail": {
-        "SVM": "BERAT",
-        "KNN": "SEDANG",
-        "Linear Regression": "Ringan",
-      }
-    };
+    String body = jsonEncode(formData);
+
+    String endpoint = base_url + "/predict";
+
+    Response response = await http.post(Uri.parse(endpoint), headers: {"Content-Type": "application/json"}, body: body);
+
+    print("hit api data predict");
+    print(response.body);
+
+    return jsonDecode(response.body);
   }
 
   static Future<Result> getDetailResult(Map AIResult) async {
