@@ -43,8 +43,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomeScreen(),
-      home: ResultScreen(formData: Question.getDummyFormData(),),
+      home: HomeScreen(),
     );
   }
 }

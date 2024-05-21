@@ -32,8 +32,7 @@ class HomeScreen extends StatelessWidget {
         ),
 
         body: FutureBuilder(
-          // future: Question.getQuestionList(),
-          future: Question.getDummyFutureQuestionList(),
+          future: Question.getQuestionList(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return LoadingScreen();

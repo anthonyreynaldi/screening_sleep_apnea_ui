@@ -5,6 +5,7 @@ import 'package:screening_sleep_apnea/utils/app_colors.dart';
 import 'package:screening_sleep_apnea/widgets/buttons/circle_reveal_button.dart';
 import 'package:screening_sleep_apnea/widgets/buttons/reset_button.dart';
 import 'package:screening_sleep_apnea/widgets/custom_accordion.dart';
+import 'package:screening_sleep_apnea/widgets/custom_image.dart';
 
 class ResultScreen extends StatefulWidget {
   final Map<String, dynamic> formData;
@@ -54,12 +55,9 @@ class _ResultScreenState extends State<ResultScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              result.image,
-              width: MediaQuery.of(context).size.width / 2,
-              fit: BoxFit.fitWidth,
-            ),
-            SizedBox(height: 12),
+            CustomImage(imageUrl: result.image),
+            
+            SizedBox(height: 48),
 
             Text(
               result.label,

@@ -39,7 +39,7 @@ class Result {
   }
 
   static Future<Map> getAIResult(Map formData) async {
-    await Future.delayed(const Duration(seconds: 1));
+    // await Future.delayed(const Duration(seconds: 1));
 
     String body = jsonEncode(formData);
 

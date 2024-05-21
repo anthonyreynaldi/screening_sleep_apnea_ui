@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screening_sleep_apnea/widgets/custom_image.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_checkbox.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_number.dart';
 import 'package:screening_sleep_apnea/widgets/questions/question_select.dart';
@@ -63,15 +64,9 @@ class _QuestionCardState extends State<QuestionCard>
       child: Column(
         children: [
           Expanded(
-            child: Center(
-              child: Image.asset(
-                widget.question.image,
-                width: MediaQuery.of(context).size.width / 2,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
+            child: CustomImage(imageUrl: widget.question.image),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 24),
 
           Text(
             widget.question.title,
