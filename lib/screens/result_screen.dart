@@ -79,7 +79,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
-              child: CustomAccordion(data: [{"title": "Data Skrining", "items": widget.formData}, {"title": "Data Skrining", "items": widget.formData}]),
+              child: CustomAccordion(data: [{"title": "Data Skrining", "items": widget.formData}, {"title": "Prediksi Model", "items": result.label_detail}]),
             ),
             SizedBox(height: 12),
 

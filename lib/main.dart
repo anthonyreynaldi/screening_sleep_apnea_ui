@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:screening_sleep_apnea/models/question.dart';
+import 'package:screening_sleep_apnea/models/result.dart';
 import 'package:screening_sleep_apnea/screens/home_screen.dart';
 import 'package:screening_sleep_apnea/screens/result_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // home: HomeScreen(),
       home: ResultScreen(formData: Question.getDummyFormData(),),
     );
   }

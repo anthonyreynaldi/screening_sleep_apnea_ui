@@ -30,6 +30,7 @@ class AppColors {
   static const Color kBackground = Color(0xFFF9F9F9);
   static const Color kHint = Color(0xFFD1D3D4);
   static const Color kAccent4 = Color(0xFFB5EBCD);
+  static const Color kAccent5 = Color(0xFF4E6157);
 
   // static MaterialColor kPrimaryColor =  MaterialColor(AppColors.kPrimary.value, <int, Color>{500: AppColors.kPrimary});
   static MaterialColor kPrimaryColor =  MaterialColor(

@@ -50,7 +50,7 @@ class _CustomAccordionState extends State<CustomAccordion> {
                   backgroundColor: AppColors.kAccent4,
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return ListTile(
-                      title: Text(section['title']),
+                      title: Text(section['title'], style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.kAccent5),),
                     );
                   },
                   body: ListView(
@@ -63,8 +63,8 @@ class _CustomAccordionState extends State<CustomAccordion> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(entry.key),
-                            Text(entry.value.toString()),
+                            Text(entry.key, style: TextStyle(color: AppColors.kAccent5),),
+                            Text(entry.value.toString(), style: TextStyle(color: AppColors.kAccent5),),
                           ],
                         ),
                       );
