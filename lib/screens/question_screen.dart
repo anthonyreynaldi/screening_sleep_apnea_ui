@@ -51,22 +51,22 @@ class QuestionScreenState extends State<QuestionScreen> {
           children: [
             Expanded(
                 child: PageView.builder(
-              itemCount: questionList.length,
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPageIndex = index;
-                });
-              },
-              itemBuilder: (context, index) {
-                return QuestionCard(
-                  playAnimation: true,
-                  question: questionList[index],
-                  sessionValue: formData[questionList[index].name],
-                  updateFormData: (value) => {updateFormData(questionList[index].name, value)},
-                );
-              },
+                    itemCount: questionList.length,
+                    controller: _pageController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentPageIndex = index;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      return QuestionCard(
+                        playAnimation: true,
+                        question: questionList[index],
+                        sessionValue: formData[questionList[index].name],
+                        updateFormData: (value) => {updateFormData(questionList[index].name, value)},
+                      );
+                    },
             )),
     
             SmoothPageIndicator(
