@@ -33,17 +33,17 @@ class Question {
 
   static Future<List<Question>> getQuestionList() async {
     try {
-      print("get data");
+      // print("get data");
       List<dynamic> response = await supabase
           .from('questions')
           .select()
           .order('order', ascending: true);
       
-      print(response);
+      // print(response);
       return response.map((item) => Question.fromJson(item)).toList();
 
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
 
     return [];
@@ -51,7 +51,7 @@ class Question {
 
   static Future<void> saveAnswerSupabase(Map formData) async {
     
-    print("ke sumbit");
+    // print("ke sumbit");
 
     //save data to supabase 
     try {
@@ -59,10 +59,10 @@ class Question {
           .from('sleep')
           .insert({"data": formData});
       
-      print(response);
+      // print(response);
 
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 

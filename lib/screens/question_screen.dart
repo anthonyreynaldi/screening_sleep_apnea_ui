@@ -36,7 +36,7 @@ class QuestionScreenState extends State<QuestionScreen> {
   updateFormData(String name, dynamic value){
     setState(() {
       formData[name] = value;
-      print(formData);
+      // print(formData);
     });
   }
 

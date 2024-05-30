@@ -32,7 +32,7 @@ class Result {
   static Future<Result> getResult(Map formData) async {
     // await Future.delayed(const Duration(seconds: 1));
 
-    print("get result");
+    // print("get result");
 
     Map AIResult = await getAIResult(formData);
 
@@ -50,44 +50,46 @@ class Result {
 
     Response response = await http.post(Uri.parse(endpoint), headers: {"Content-Type": "application/json"}, body: body);
 
-    print("hit api data predict");
-    print(response.body);
+    // print("hit api data predict");
+    // print(response.body);
 
     return jsonDecode(response.body);
   }
 
   static Future<Result> getDetailResult(Map AIResult) async {
     try {
-      print("get result data");
+      // print("get result data");
       Map<String, dynamic> response = await supabase
           .from('result')
           .select()
           .eq('name', AIResult['name'])
           .single();
       
-      print(response);
+      // print(response);
       
       return Result.fromJson(response, AIResult);
 
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
 
     return Result(image: "", name: "", label: "", description: "", label_detail: {});
   }
 
-  static Future<Map> saveResultToSheet(Map formData, Map AIResult) async {
+  static Future<void> saveResultToSheet(Map formData, Map AIResult) async {
 
     String body = jsonEncode({...formData, ...AIResult});   //combine input data and result data
 
     String endpoint = sheet_endpoint;
 
-    Response response = await http.post(Uri.parse(endpoint), headers: {"Content-Type": "application/json"}, body: body);
+    try {
+      Response response = await http.post(Uri.parse(endpoint), headers: {"Content-Type": "text/plain"}, body: body);
 
-    print("hit api save sheet");
-    print(response.body);
+      // print("hit api save sheet");
+      // print(response.body);
 
-    return jsonDecode(response.body);
+    } catch (e) {
+    }
   }
 
   static Map getDummyResult(){
