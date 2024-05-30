@@ -5,7 +5,8 @@ import 'package:http/http.dart';
 import 'package:screening_sleep_apnea/main.dart';
 import "package:http/http.dart" as http;
 
-String base_url = "https://anthonyreynaldi.pythonanywhere.com";
+const String base_url = String.fromEnvironment('API_AI_ENDPOINT');
+const String sheet_endpoint = String.fromEnvironment('API_SHEET_ENDPOINT');
 
 class Result {
   String image;
@@ -29,11 +30,13 @@ class Result {
   }
 
   static Future<Result> getResult(Map formData) async {
-    await Future.delayed(const Duration(seconds: 1));
+    // await Future.delayed(const Duration(seconds: 1));
 
     print("get result");
 
     Map AIResult = await getAIResult(formData);
+
+    await saveResultToSheet(formData, AIResult);
 
     return await getDetailResult(AIResult);
   }
@@ -71,6 +74,20 @@ class Result {
     }
 
     return Result(image: "", name: "", label: "", description: "", label_detail: {});
+  }
+
+  static Future<Map> saveResultToSheet(Map formData, Map AIResult) async {
+
+    String body = jsonEncode({...formData, ...AIResult});   //combine input data and result data
+
+    String endpoint = sheet_endpoint;
+
+    Response response = await http.post(Uri.parse(endpoint), headers: {"Content-Type": "application/json"}, body: body);
+
+    print("hit api save sheet");
+    print(response.body);
+
+    return jsonDecode(response.body);
   }
 
   static Map getDummyResult(){
