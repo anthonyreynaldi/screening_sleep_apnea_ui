@@ -27,7 +27,7 @@ class OnboardingAnimations {
       AnimationController controller) {
     return Tween<Offset>(
       begin: const Offset(0.0, -0.8),
-      end: const Offset(0.0, -0.05),
+      end: const Offset(0.0, 0),
     ).animate(CurvedAnimation(
       parent: controller,
       curve: const ElasticOutCurve(1.2),

@@ -25,10 +25,10 @@ class HomeScreen extends StatelessWidget {
           title: Text(
             "Sceening Obstructive Sleep Apnea",
             style: const TextStyle(
-                fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black),
+                fontSize: 24, fontWeight: FontWeight.w700, color: Colors.white),
             textAlign: TextAlign.center,
           ),
-          backgroundColor: AppColors.kBackground,
+          backgroundColor: AppColors.kPrimary,
         ),
 
         body: FutureBuilder(

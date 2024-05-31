@@ -63,6 +63,7 @@ class _QuestionCardState extends State<QuestionCard>
       position: _slideAnimation,
       child: Column(
         children: [
+          const SizedBox(height: 12),
           Expanded(
             child: CustomImage(imageUrl: widget.question.image),
           ),

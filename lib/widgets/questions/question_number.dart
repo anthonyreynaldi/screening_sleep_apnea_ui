@@ -24,6 +24,11 @@ class _QuestionNumberState extends State<QuestionNumber> {
   void initState() {
     super.initState();
     _currentValue = widget.sessionValue ?? widget.question.input['init'];
+
+    //set init value to form data
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.updateFormData(_currentValue);
+    });
   }
 
 

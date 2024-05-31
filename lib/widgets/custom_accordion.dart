@@ -63,8 +63,9 @@ class _CustomAccordionState extends State<CustomAccordion> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(entry.key, style: TextStyle(color: AppColors.kAccent5),),
-                            Text(entry.value.toString(), style: TextStyle(color: AppColors.kAccent5),),
+                            Expanded(child: Text(entry.key, style: TextStyle(color: AppColors.kAccent5), overflow: TextOverflow.visible, softWrap: true,)),
+                            SizedBox(width: 18,),
+                            Expanded(child: Text(entry.value.toString(), style: TextStyle(color: AppColors.kAccent5), overflow: TextOverflow.visible, softWrap: true, textAlign: TextAlign.right,)),
                           ],
                         ),
                       );
